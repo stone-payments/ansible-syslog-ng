@@ -1,0 +1,4 @@
+---
+### Journald Template
+storage_option: no
+forward_syslog_option: no

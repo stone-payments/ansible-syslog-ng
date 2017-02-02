@@ -1,0 +1,22 @@
+---
+- name: Check redhat repo is present
+  stat:
+    path: /etc/yum.repos.d/redhat.repo
+  register: repo
+- name: Enable redhat repo for broken dependencies.
+  ini_file:
+    path: /etc/yum.repos.d/redhat.repo
+    section: rhel-7-server-eus-optional-rpms
+    option: enabled
+    value: 1
+  when: repo.stat.exists == True
+  register: enablerepo
+- name: Install syslog-ng server
+  yum:
+    name: syslog-ng
+    state: present
+  when: enablerepo|changed
+  register: install_syslog
+- name: Configure syslog-ng server
+  include: config-syslog.yml
+  when: install_syslog|changed
