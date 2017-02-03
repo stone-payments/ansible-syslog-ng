@@ -5,7 +5,7 @@
   register: repo
 - name: Enable redhat repo for broken dependencies.
   ini_file:
-    path: /etc/yum.repos.d/redhat.repo
+    dest: /etc/yum.repos.d/redhat.repo
     section: rhel-7-server-eus-optional-rpms
     option: enabled
     value: 1
