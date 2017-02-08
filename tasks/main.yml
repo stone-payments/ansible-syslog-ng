@@ -1,22 +1,23 @@
 ---
-- name: Check redhat repo is present
-  stat:
-    path: /etc/yum.repos.d/redhat.repo
-  register: repo
-- name: Enable redhat repo for broken dependencies.
-  ini_file:
-    dest: /etc/yum.repos.d/redhat.repo
-    section: rhel-7-server-eus-optional-rpms
-    option: enabled
-    value: 1
-  when: repo.stat.exists == True
-  register: enablerepo
-- name: Install syslog-ng server
+- name: enable additional software channels
+  redhat_repositories:
+    id:
+      - rhel-7-server-eus-optional-rpms
+    state: enabled
+- name: install syslog-ng server
   yum:
     name: syslog-ng
     state: present
-  when: enablerepo|changed
-  register: install_syslog
-- name: Configure syslog-ng server
-  include: config-syslog.yml
-  when: install_syslog|changed
+- name: configuring syslog-ng server
+  copy:
+    src: syslog-ng.conf
+    dest: /etc/syslog-ng/syslog-ng.conf
+  notify:
+    - restart syslog-ng
+- name: configuring journalctl
+  template:
+    src: journald.j2
+    dest: /etc/systemd/journald.conf
+  notify:
+    - restart systemd-journald
+    - restart syslog-ng
