@@ -5,7 +5,7 @@ source {{ syslog_ng_source.name }} {
 {% endfor %}
 
 {% for syslog_ng_dest in syslog_ng_dests %}
-destination {{ syslog_ng_dest.name }} { {{ syslog_ng_dest.proto }}("{{ syslog_ng_dest.host }}" port({{ syslog_ng_dest.port }})); };
+destination {{ syslog_ng_dest.name }} { {{ syslog_ng_dest.proto }}("{{ syslog_ng_dest.ip }}" port({{ syslog_ng_dest.port }})); };
 {% endfor %}
 
 {% for syslog_ng_log in syslog_ng_logs %}
