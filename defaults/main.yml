@@ -2,3 +2,28 @@
 ### Journald Template
 journald_storage_option: no
 journald_forward_syslog_option: no
+
+### Task envs
+syslog_ng_filename: custom
+
+### Template envs
+syslog_ng_template: basic
+syslog_ng_source_name: s_custom
+
+### Syslog Extra Configs
+
+syslog_ng_sources:
+  - name: ""
+    proto: ""
+    ip: ""
+    port: ""
+
+syslog_ng_dests:
+  - name: ""
+    proto: ""
+    host: ""
+    port: ""
+
+syslog_ng_logs:
+  - source_name: ""
+    dest_name: "" 
