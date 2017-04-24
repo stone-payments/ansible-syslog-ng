@@ -1,7 +1,7 @@
 galaxy_info:
   author: Guilherme Oki
   description: Installation of syslog-ng
-  company: Buy4 Processamento de Pagamentos S.A.
+  company: Stone Payments
   license: MIT
   min_ansible_version: 2.1
   platforms:
