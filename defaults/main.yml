@@ -1,7 +1,7 @@
 ---
 ### Journald Template
-journald_storage_option: no
-journald_forward_syslog_option: no
+journald_storage_option: false
+journald_forward_syslog_option: false
 
 ### Task envs
 syslog_ng_filename: custom
@@ -26,4 +26,4 @@ syslog_ng_dests:
 
 syslog_ng_logs:
   - source_name: ""
-    dest_name: "" 
+    dest_name: ""
