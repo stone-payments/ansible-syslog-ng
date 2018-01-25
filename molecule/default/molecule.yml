@@ -6,15 +6,19 @@ driver:
 lint:
   name: yamllint
 platforms:
-  - name: instance
-    image: centos:7
+  - name: centos7_4
+    image: centos/systemd:latest
+    privileged: true
 provisioner:
   name: ansible
+  playbooks:
+    converge: ../../playbook.yml
   lint:
     name: ansible-lint
 scenario:
   name: default
 verifier:
   name: testinfra
+  directory: ../../tests
   lint:
     name: flake8
