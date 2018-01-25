@@ -4,16 +4,19 @@
     id:
       - rhel-7-server-eus-optional-rpms
     state: enabled
+
 - name: install syslog-ng server
   yum:
     name: syslog-ng
     state: present
+
 - name: configuring syslog-ng server
   copy:
     src: syslog-ng.conf
     dest: /etc/syslog-ng/syslog-ng.conf
   notify:
     - restart syslog-ng
+
 - name: configuring extra files in syslog-ng
   template:
     src: "{{ syslog_ng_template }}.j2"
