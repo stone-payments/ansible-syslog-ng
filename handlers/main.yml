@@ -3,6 +3,7 @@
   service:
     name: syslog-ng
     state: restarted
+
 - name: restart systemd-journald
   service:
     name: systemd-journald
