@@ -1,0 +1,12 @@
+---
+sudo: required
+language: python
+services:
+  - docker
+before_install:
+  - yum update -y
+install:
+  - pip install molecule
+  - pip install docker-py
+script:
+  - molecule test
